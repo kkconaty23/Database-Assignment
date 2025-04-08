@@ -16,10 +16,10 @@ import java.sql.Statement;
  * @author MoaathAlrajab
  */
 public class ConnDbOps {
-    final String MYSQL_SERVER_URL = "jdbc:mysql://localhost/";
-    final String DB_URL = "jdbc:mysql://localhost/DBname";
-    final String USERNAME = "admin";
-    final String PASSWORD = "password";
+    final String MYSQL_SERVER_URL = "jdbc:mysql://csc311kevinconatyfdale.mysql.database.azure.com";
+    final String DB_URL = "jdbc:mysql://csc311kevinconatyfdale.mysql.database.azure.com/DBname";
+    final String USERNAME = "kevinconaty";
+    final String PASSWORD = "leaftree94!";
     
     public  boolean connectToDatabase() {
         boolean hasRegistredUsers = false;
@@ -121,9 +121,7 @@ public class ConnDbOps {
         }
     }
 
-    public  void insertUser(String name, String email, String phone, String address, String password) {
-
-
+    public boolean insertUser(String name, String email, String phone, String address, String password) {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             String sql = "INSERT INTO users (name, email, phone, address, password) VALUES (?, ?, ?, ?, ?)";
@@ -136,16 +134,41 @@ public class ConnDbOps {
 
             int row = preparedStatement.executeUpdate();
 
-            if (row > 0) {
-                System.out.println("A new user was inserted successfully.");
-            }
-
             preparedStatement.close();
             conn.close();
+
+            return row > 0;
+
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
+
+    /**
+     * check credentials usedd to query DB and allow sign in
+     * @param email
+     * @param password
+     * @return
+     */
+    public boolean checkCredentials(String email, String password) {
+        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+
+        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+
+            ResultSet rs = stmt.executeQuery();
+            return rs.next(); // true if a row was found
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     
 }

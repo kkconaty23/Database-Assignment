@@ -47,6 +47,16 @@ public class ConnDbOps {
                     + ")";
             statement.executeUpdate(sql);
 
+            //adding a second table to the DB
+            String createStudentTable = "CREATE TABLE IF NOT EXISTS student_users ("
+                    + "id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,"
+                    + "first_name VARCHAR(100) NOT NULL,"
+                    + "last_name VARCHAR(100) NOT NULL,"
+                    + "department VARCHAR(100),"
+                    + "major VARCHAR(100)"
+                    + ")";
+            statement.executeUpdate(createStudentTable);
+
             //check if we have users in the table users
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM users");
@@ -131,6 +141,52 @@ public class ConnDbOps {
             preparedStatement.setString(3, phone);
             preparedStatement.setString(4, address);
             preparedStatement.setString(5, password);
+
+            int row = preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            conn.close();
+
+            return row > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean insertStudentUser(String firstName, String lastName, String department, String major) {
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            String sql = "INSERT INTO student_users (first_name, last_name, department, major) VALUES (?, ?, ?, ?)";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, department);
+            preparedStatement.setString(4, major);
+
+            int row = preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            conn.close();
+
+            return row > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deleteStudentUser(String firstName, String lastName, String department, String major) {
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            String sql = "DELETE FROM student_users WHERE first_name = ? AND last_name = ? AND department = ? AND major = ?\n";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, department);
+            preparedStatement.setString(4, major);
 
             int row = preparedStatement.executeUpdate();
 

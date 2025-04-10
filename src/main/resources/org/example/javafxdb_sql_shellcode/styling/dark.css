@@ -1,0 +1,18 @@
+.root {
+    -fx-base: #1e1e1e;
+    -fx-background: #2b2b2b;
+    -fx-text-fill: #ffffff;
+}
+
+.nav_btn {
+    -fx-background-color: #3c3f41;
+    -fx-text-fill: #ffffff;
+}
+
+.left_pane {
+    -fx-background-color: #2c2c2c;
+}
+
+.bottom_pane {
+    -fx-background-color: #3a3a3a;
+}

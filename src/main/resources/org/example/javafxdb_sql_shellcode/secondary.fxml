@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="627.0" style="-fx-background-color: GRAY;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxdb_sql_shellcode.SecondaryController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="880.0" prefWidth="627.0" style="-fx-background-color: GRAY;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxdb_sql_shellcode.SecondaryController">
    <children>
       <VBox layoutX="195.0" layoutY="154.0" prefHeight="234.0" prefWidth="210.0" spacing="10.0">
          <children>

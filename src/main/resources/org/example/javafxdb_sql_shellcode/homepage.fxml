@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="535.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxdb_sql_shellcode.HomepageControler">
+<AnchorPane fx:id="rootPane" prefHeight="535.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxdb_sql_shellcode.HomepageController">
     <children>
         <GridPane prefHeight="754.0" prefWidth="828.0">
             <columnConstraints>
@@ -38,7 +38,7 @@
                             <menus>
                                 <Menu mnemonicParsing="false" text="File">
                                     <items>
-                                        <MenuItem mnemonicParsing="false"  text="Close" />
+                                        <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Close" />
                                     </items>
                                 </Menu>
                                 <Menu mnemonicParsing="false" text="Edit">
@@ -55,6 +55,9 @@
                                     <items>
                                         <MenuItem mnemonicParsing="false" text="Close" />
                                     </items>
+                                    <items>
+                                        <MenuItem fx:id="themeToggleItem" mnemonicParsing="false" text="Switch to Dark Mode" onAction="#toggleTheme"/>
+                                    </items>
                                 </Menu>
                                 <Menu mnemonicParsing="false" text="Help">
                                     <items>
@@ -65,7 +68,7 @@
                         </MenuBar>
                     </top>
                     <right>
-                        <TableView fx:id="tv"  prefHeight="501.0" prefWidth="507.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="tv" onMouseClicked="#selectedItemTV" prefHeight="501.0" prefWidth="507.0" BorderPane.alignment="CENTER">
                             <columns>
                                 <TableColumn fx:id="tv_id" prefWidth="32.0" text="ID" />
                                 <TableColumn fx:id="tv_fn" prefWidth="87.0" text="First Name" />
@@ -81,9 +84,9 @@
                             <children>
                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                     <children>
-                                        <ImageView fx:id="img_view" fitHeight="103.0" fitWidth="85.0" layoutX="16.0" layoutY="14.0"  pickOnBounds="true" preserveRatio="true" styleClass="profile_pic">
+                                        <ImageView fx:id="img_view" fitHeight="103.0" fitWidth="85.0" layoutX="16.0" layoutY="14.0" onMouseClicked="#showImage" pickOnBounds="true" preserveRatio="true" styleClass="profile_pic">
                                             <image>
-                                                <Image url="@Images/profile.png" />
+                                                <Image url="@../../../../../../../JavaFxDB_SQL_ShellCode/src/main/resources/org/example/javafxdb_sql_shellcode/Images/profile.png" />
                                             </image>
                                         </ImageView>
                                     </children>
@@ -114,22 +117,22 @@
                                         <Insets left="10.0" right="10.0" top="5.0" />
                                     </VBox.margin>
                                 </TextField>
-                                <Button minWidth="-Infinity" mnemonicParsing="false"  styleClass="nav_btn" text="Clear">
+                                <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#clearForm" styleClass="nav_btn" text="Clear">
                                     <VBox.margin>
                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                     </VBox.margin>
                                 </Button>
-                                <Button fx:id="addBtn" mnemonicParsing="false"  styleClass="nav_btn" text="Add">
+                                <Button fx:id="addBtn" mnemonicParsing="false" onAction="#addNewRecord" styleClass="nav_btn" text="Add">
                                     <VBox.margin>
                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                     </VBox.margin>
                                 </Button>
-                                <Button mnemonicParsing="false"  styleClass="nav_btn" text="Edit">
+                                <Button mnemonicParsing="false" onAction="#editRecord" styleClass="nav_btn" text="Edit">
                                     <VBox.margin>
                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                     </VBox.margin>
                                 </Button>
-                                <Button mnemonicParsing="false" styleClass="nav_btn" text="Delete">
+                                <Button mnemonicParsing="false" onAction="#deleteRecord" styleClass="nav_btn" text="Delete">
                                     <VBox.margin>
                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                     </VBox.margin>

@@ -4,12 +4,16 @@
  */
 package org.example.javafxdb_sql_shellcode.db;
 
+import org.example.javafxdb_sql_shellcode.Person;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -104,7 +108,7 @@ public class ConnDbOps {
         }
     }
 
-    public  void listAllUsers() {
+    public List<Person> listAllUsers() {
 
 
 
@@ -129,6 +133,39 @@ public class ConnDbOps {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    public List<Person> listAllStudentUsers() {
+        List<Person> people = new ArrayList<>();
+
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            String sql = "SELECT * FROM student_users";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
+                String department = resultSet.getString("department");
+                String major = resultSet.getString("major");
+
+                // Print debug
+                System.out.println("ID: " + id + ", Name: " + firstName + " " + lastName + ", Department: " + department + ", Major: " + major);
+
+                // Add to list
+                people.add(new Person(id, firstName, lastName, department, major));
+            }
+
+            preparedStatement.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return people;
     }
 
     public boolean insertUser(String name, String email, String phone, String address, String password) {
@@ -155,6 +192,14 @@ public class ConnDbOps {
         }
     }
 
+    /**
+     * method for adding student to the DB
+     * @param firstName
+     * @param lastName
+     * @param department
+     * @param major
+     * @return
+     */
     public boolean insertStudentUser(String firstName, String lastName, String department, String major) {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
@@ -178,6 +223,14 @@ public class ConnDbOps {
         }
     }
 
+    /**
+     * method to delete student users, uses same logic as adding, but shanged the SQL string
+     * @param firstName
+     * @param lastName
+     * @param department
+     * @param major
+     * @return
+     */
     public boolean deleteStudentUser(String firstName, String lastName, String department, String major) {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
@@ -202,7 +255,7 @@ public class ConnDbOps {
     }
 
     /**
-     * check credentials usedd to query DB and allow sign in
+     * check credentials used to query DB and allow sign in
      * @param email
      * @param password
      * @return

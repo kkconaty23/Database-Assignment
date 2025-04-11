@@ -56,7 +56,7 @@
                                         <MenuItem mnemonicParsing="false" text="Close" />
                                     </items>
                                     <items>
-                                        <MenuItem fx:id="themeToggleItem" mnemonicParsing="false" text="Switch to Dark Mode" onAction="#toggleTheme"/>
+                                        <MenuItem fx:id="themeToggleItem" mnemonicParsing="false" onAction="#toggleTheme" text="Switch to Dark Mode" />
                                     </items>
                                 </Menu>
                                 <Menu mnemonicParsing="false" text="Help">
@@ -137,6 +137,11 @@
                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                     </VBox.margin>
                                 </Button>
+                        <Button fx:id="showBtn" layoutX="20.0" layoutY="324.0" mnemonicParsing="false" onAction="#ShowBtnClick" styleClass="nav_btn" text="Show Students">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
                             </children>
                         </VBox>
                     </center>

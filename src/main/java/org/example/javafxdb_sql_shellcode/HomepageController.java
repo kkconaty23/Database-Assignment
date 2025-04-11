@@ -2,13 +2,11 @@ package org.example.javafxdb_sql_shellcode;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,6 +16,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static org.example.javafxdb_sql_shellcode.App.cdbop;
@@ -50,6 +49,9 @@ public class HomepageController implements Initializable {
     private AnchorPane rootPane;
     @FXML
     private MenuItem themeToggleItem;
+    @FXML
+    private Button showBtn;
+
     private boolean isDarkMode;
 
 
@@ -64,6 +66,8 @@ public class HomepageController implements Initializable {
 
         tv.setItems(data);
     }
+
+
 
 
     @FXML
@@ -83,11 +87,12 @@ public class HomepageController implements Initializable {
         ));
 
         // Insert into the database
+        //using he same logic as secondary controller, but adds to different database
         boolean success = cdbop.insertStudentUser(firstName, lastName, dept, maj);
 
         if (success) {
             System.out.println("Student user inserted successfully.");
-            // optionally refresh from DB here
+
         } else {
             System.out.println("Insert failed. Show error to user if needed.");
         }
@@ -132,6 +137,7 @@ public class HomepageController implements Initializable {
         String dept = department.getText();
         String maj = major.getText();
 
+        //added new method for deleting the user from the database in ConnDbOps
         boolean success = cdbop.deleteStudentUser(firstName, lastName, dept, maj);
 
         if (success) {
@@ -169,6 +175,11 @@ public class HomepageController implements Initializable {
 
     }
 
+
+
+    /**
+     * Allows toggling between light and dark mode, application starts in light mode
+     */
     @FXML
     public void toggleTheme() {
         Scene scene = rootPane.getScene();
@@ -184,6 +195,21 @@ public class HomepageController implements Initializable {
         }
 
         isDarkMode = !isDarkMode;
+    }
+
+    /**
+     * added a show button to display all users in the table view
+     * @param event
+     */
+    @FXML
+    void ShowBtnClick(ActionEvent event) {
+        List<Person> users = cdbop.listAllStudentUsers();
+        if (users != null) {
+            ObservableList<Person> data = FXCollections.observableArrayList(users);
+            tv.setItems(data);
+        } else {
+            System.out.println("null");
+        }
     }
 
 }

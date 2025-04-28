@@ -1,158 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="rootPane" prefHeight="535.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxdb_sql_shellcode.HomepageController">
-    <children>
-        <GridPane prefHeight="754.0" prefWidth="828.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="693.0" prefWidth="829.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-                    <top>
-                        <MenuBar BorderPane.alignment="CENTER">
-                            <menus>
-                                <Menu mnemonicParsing="false" text="File">
-                                    <items>
-                                        <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Close" />
-                                    </items>
-                                </Menu>
-                                <Menu mnemonicParsing="false" text="Edit">
-                                    <items>
-                                        <MenuItem mnemonicParsing="false" text="Delete" />
-                                    </items>
-                                </Menu>
-                                <Menu mnemonicParsing="false" text="NewMenuItem">
-                                    <items>
-                                        <MenuItem mnemonicParsing="false" text="About" />
-                                    </items>
-                                </Menu>
-                                <Menu mnemonicParsing="false" text="Settings">
-                                    <items>
-                                        <MenuItem mnemonicParsing="false" text="Close" />
-                                    </items>
-                                    <items>
-                                        <MenuItem fx:id="themeToggleItem" mnemonicParsing="false" onAction="#toggleTheme" text="Switch to Dark Mode" />
-                                    </items>
-                                </Menu>
-                                <Menu mnemonicParsing="false" text="Help">
-                                    <items>
-                                        <MenuItem mnemonicParsing="false" text="About" />
-                                    </items>
-                                </Menu>
-                            </menus>
-                        </MenuBar>
-                    </top>
-                    <right>
-                        <TableView fx:id="tv" onMouseClicked="#selectedItemTV" prefHeight="501.0" prefWidth="507.0" BorderPane.alignment="CENTER">
-                            <columns>
-                                <TableColumn fx:id="tv_id" prefWidth="32.0" text="ID" />
-                                <TableColumn fx:id="tv_fn" prefWidth="87.0" text="First Name" />
-                                <TableColumn fx:id="tv_ln" prefWidth="83.0" text="Last Name" />
-                                <TableColumn fx:id="tv_dept" prefWidth="107.0" text="Department" />
-                                <TableColumn fx:id="tv_major" prefWidth="46.0" text="Major" />
-                                <TableColumn fx:id="tv_major1" prefWidth="152.0" text="Course" />
-                            </columns>
-                        </TableView>
-                    </right>
-                    <left>
-                        <VBox prefHeight="264.0" prefWidth="116.0" styleClass="left_pane" BorderPane.alignment="CENTER">
-                            <children>
-                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                    <children>
-                                        <ImageView fx:id="img_view" fitHeight="103.0" fitWidth="85.0" layoutX="16.0" layoutY="14.0" onMouseClicked="#showImage" pickOnBounds="true" preserveRatio="true" styleClass="profile_pic">
-                                            <image>
-                                                <Image url="@../../../../../../../JavaFxDB_SQL_ShellCode/src/main/resources/org/example/javafxdb_sql_shellcode/Images/profile.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </AnchorPane>
-                            </children>
-                        </VBox>
-                    </left>
-                    <center>
-                        <VBox prefHeight="476.0" prefWidth="233.0" BorderPane.alignment="CENTER">
-                            <children>
-                                <TextField fx:id="first_name" promptText="First Name">
-                                    <VBox.margin>
-                                        <Insets left="10.0" right="10.0" top="5.0" />
-                                    </VBox.margin>
-                                </TextField>
-                                <TextField fx:id="last_name" promptText="Last Name">
-                                    <VBox.margin>
-                                        <Insets left="10.0" right="10.0" top="5.0" />
-                                    </VBox.margin>
-                                </TextField>
-                                <TextField fx:id="department" promptText="Department">
-                                    <VBox.margin>
-                                        <Insets left="10.0" right="10.0" top="5.0" />
-                                    </VBox.margin>
-                                </TextField>
-                                <TextField fx:id="major" promptText="Major">
-                                    <VBox.margin>
-                                        <Insets left="10.0" right="10.0" top="5.0" />
-                                    </VBox.margin>
-                                </TextField>
-                                <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#clearForm" styleClass="nav_btn" text="Clear">
-                                    <VBox.margin>
-                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                    </VBox.margin>
-                                </Button>
-                                <Button fx:id="addBtn" mnemonicParsing="false" onAction="#addNewRecord" styleClass="nav_btn" text="Add">
-                                    <VBox.margin>
-                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                    </VBox.margin>
-                                </Button>
-                                <Button mnemonicParsing="false" onAction="#editRecord" styleClass="nav_btn" text="Edit">
-                                    <VBox.margin>
-                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                    </VBox.margin>
-                                </Button>
-                                <Button mnemonicParsing="false" onAction="#deleteRecord" styleClass="nav_btn" text="Delete">
-                                    <VBox.margin>
-                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                    </VBox.margin>
-                                </Button>
-                        <Button fx:id="showBtn" layoutX="20.0" layoutY="324.0" mnemonicParsing="false" onAction="#ShowBtnClick" styleClass="nav_btn" text="Show Students">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                            </children>
-                        </VBox>
-                    </center>
-                    <bottom>
-                        <HBox prefHeight="32.0" prefWidth="693.0" styleClass="bottom_pane" BorderPane.alignment="CENTER" />
-                    </bottom>
-                </BorderPane>
-            </children>
-        </GridPane>
-    </children>
-    <stylesheets>
-        <URL value="@styling/style.css" />
-    </stylesheets>
+<AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.javafxdb_sql_shellcode.HomepageController">
+    <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Menu text="File">
+            <MenuItem text="Exit" onAction="#closeApplication" />
+        </Menu>
+        <Menu text="Edit">
+            <MenuItem fx:id="addMenuItem" text="Add Record" onAction="#addNewRecord" />
+            <MenuItem fx:id="editMenuItem" text="Edit Record" onAction="#editRecord" />
+            <MenuItem fx:id="deleteMenuItem" text="Delete Record" onAction="#deleteRecord" />
+            <MenuItem text="Clear Form" onAction="#clearForm" />
+        </Menu>
+        <Menu text="View">
+            <MenuItem fx:id="themeToggleItem" text="Switch to Dark Mode" onAction="#toggleTheme" />
+            <CheckMenuItem fx:id="autoRefreshItem" text="Auto Refresh Data" onAction="#toggleAutoRefresh" />
+        </Menu>
+        <Menu text="Data">
+            <MenuItem fx:id="importCsvMenuItem" text="Import CSV" onAction="#importFromCsv" />
+            <MenuItem fx:id="exportCsvMenuItem" text="Export CSV" onAction="#exportToCsv" />
+            <MenuItem fx:id="refreshDataMenuItem" text="Refresh Data" onAction="#refreshData" />
+        </Menu>
+        <Menu text="Help">
+            <MenuItem text="About" onAction="#showAbout" />
+        </Menu>
+    </MenuBar>
+
+    <VBox spacing="10" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+        <HBox spacing="20">
+            <!-- Left side: Form for data entry -->
+            <VBox spacing="10" prefWidth="350">
+                <Label text="Student Information" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+
+                <GridPane hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                    </columnConstraints>
+
+                    <Label text="First Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                    <TextField fx:id="first_name" promptText="Enter first name" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                    <Label text="Last Name:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                    <TextField fx:id="last_name" promptText="Enter last name" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                    <Label text="Department:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                    <TextField fx:id="department" promptText="Enter department" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                    <Label text="Major:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                    <ComboBox fx:id="majorComboBox" promptText="Select major" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+                </GridPane>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button fx:id="addBtn" text="Add" onAction="#addNewRecord" prefWidth="80" />
+                    <Button fx:id="editBtn" text="Edit" onAction="#editRecord" prefWidth="80" />
+                    <Button fx:id="deleteBtn" text="Delete" onAction="#deleteRecord" prefWidth="80" />
+                    <Button text="Clear" onAction="#clearForm" prefWidth="80" />
+                </HBox>
+
+                <Separator orientation="HORIZONTAL" />
+
+                <VBox spacing="5">
+                    <Label text="Profile Image" style="-fx-font-weight: bold" />
+                    <ImageView fx:id="img_view" fitHeight="150.0" fitWidth="200.0" preserveRatio="true" />
+                    <Button text="Select Image" onAction="#showImage" />
+                </VBox>
+            </VBox>
+
+            <!-- Right side: TableView for displaying data -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Student Records" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+
+                <TableView fx:id="tv" onMouseClicked="#selectedItemTV" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="tv_id" text="ID" prefWidth="50" />
+                        <TableColumn fx:id="tv_fn" text="First Name" prefWidth="120" />
+                        <TableColumn fx:id="tv_ln" text="Last Name" prefWidth="120" />
+                        <TableColumn fx:id="tv_dept" text="Department" prefWidth="120" />
+                        <TableColumn fx:id="tv_major" text="Major" prefWidth="120" />
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button fx:id="showBtn" text="Show All Records" onAction="#ShowBtnClick" />
+                    <Button fx:id="exportBtn" text="Export Selected" onAction="#exportSelectedRecord" />
+                </HBox>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- Status bar at the bottom -->
+    <HBox style="-fx-background-color: #f0f0f0; -fx-padding: 5px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Label fx:id="statusLabel" text="" HBox.hgrow="ALWAYS" />
+        <Label fx:id="recordCountLabel" text="Records: 0" />
+        <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+        </padding>
+    </HBox>
 </AnchorPane>

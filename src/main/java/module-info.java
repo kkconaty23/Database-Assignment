@@ -2,6 +2,7 @@ module org.example.javafxdb_sql_shellcode {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires java.prefs;
 
 
     opens org.example.javafxdb_sql_shellcode to javafx.fxml;
